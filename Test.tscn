@@ -5,12 +5,8 @@
 [node name="Node2D" type="Node2D" unique_id=193147978]
 metadata/Tes5 = false
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1922345737]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1922345737]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=92431404]
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/AnimatedSprite2D" unique_id=1985667108]
-
-[node name="NewPiskel1_png(3)" type="Sprite2D" parent="CharacterBody2D/AnimatedSprite2D" unique_id=439883563]
+[node name="NewPiskel1_png(3)" type="Sprite2D" parent="Player" unique_id=439883563]
 position = Vector2(525, 344)
 texture = ExtResource("1_myinc")
