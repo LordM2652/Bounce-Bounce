@@ -2,11 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://d0ciuy0qn8xce" path="res://New Piskel-1.png (3).png" id="1_myinc"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c46el"]
+size = Vector2(51, 92)
+
 [node name="Node2D" type="Node2D" unique_id=193147978]
 metadata/Tes5 = false
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1922345737]
 
-[node name="NewPiskel1_png(3)" type="Sprite2D" parent="Player" unique_id=439883563]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=986374984]
+texture_filter = 1
+position = Vector2(522, 343)
+shape = SubResource("RectangleShape2D_c46el")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=572767808]
 position = Vector2(525, 344)
 texture = ExtResource("1_myinc")
