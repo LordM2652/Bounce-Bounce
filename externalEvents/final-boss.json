@@ -1,0 +1,1218 @@
+{
+  "associatedLayout": "Level 3",
+  "name": "Final Boss",
+  "events": [
+    {
+      "colorB": 228,
+      "colorG": 176,
+      "colorR": 74,
+      "creationTime": 0,
+      "folded": true,
+      "name": "Cinematic",
+      "source": "",
+      "type": "BuiltinCommonInstructions::Group",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "SceneJustBegins"
+              },
+              "parameters": [
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "ActivateBehavior"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "EllipseMovement",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "SaveState::LoadJustSucceeded"
+              },
+              "parameters": [
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "ActivateBehavior"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "EllipseMovement",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "Distance"
+              },
+              "parameters": [
+                "Looney",
+                "BALLOON_MAN",
+                "800",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "AnimatableCapability::AnimatableBehavior::Name"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Animation",
+                "=",
+                "\"Car\""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetBooleanObjectVariable"
+              },
+              "parameters": [
+                "Looney",
+                "Move",
+                "False",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "PlatformBehavior::Gravity"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "PlatformerObject",
+                "=",
+                "1000"
+              ]
+            },
+            {
+              "type": {
+                "value": "ActivateBehavior"
+              },
+              "parameters": [
+                "Looney",
+                "SmoothPlatformerCamera",
+                "no"
+              ]
+            },
+            {
+              "type": {
+                "value": "ActivateBehavior"
+              },
+              "parameters": [
+                "Looney",
+                "SmoothCamera",
+                "no"
+              ]
+            },
+            {
+              "type": {
+                "value": "Tween::TweenCameraPosition2"
+              },
+              "parameters": [
+                "",
+                "\"Boss Camera\"",
+                "Boss_Camera.X()",
+                "Boss_Camera.Y()",
+                "",
+                "\"easeInOutSine\"",
+                ".1"
+              ]
+            },
+            {
+              "type": {
+                "value": "ZoomCamera"
+              },
+              "parameters": [
+                "",
+                ".75",
+                "",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "PlatformBehavior::IsOnFloor"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "PlatformerObject"
+              ]
+            },
+            {
+              "type": {
+                "value": "AnimatableCapability::AnimatableBehavior::Name"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Animation",
+                "=",
+                "\"Car\""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "AnimatableCapability::AnimatableBehavior::SetName"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Animation",
+                "=",
+                "\"Explosion\""
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySound"
+              },
+              "parameters": [
+                "",
+                "New sound effect5",
+                "",
+                "100",
+                "2"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "AnimatableCapability::AnimatableBehavior::HasAnimationEnded"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Animation"
+              ]
+            },
+            {
+              "type": {
+                "value": "AnimatableCapability::AnimatableBehavior::Name"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Animation",
+                "=",
+                "\"Explosion\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "AnimatableCapability::AnimatableBehavior::SetName"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Animation",
+                "=",
+                "\"Clown\""
+              ]
+            },
+            {
+              "type": {
+                "value": "Tween::TweenBehavior::AddObjectPositionYTween2"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Tween",
+                "\"Float\"",
+                "Boss_Camera.Y() -300",
+                "\"easeInOutQuint\"",
+                "1",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "ActivateBehavior"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "PlatformerObject",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "EffectCapability::EffectBehavior::EnableEffect"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Effect",
+                "\"AdvancedBloom\"",
+                "yes"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "PosY"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "=",
+                "BALLOON_MAN.Y_Value"
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "Wait"
+              },
+              "parameters": [
+                ".1"
+              ]
+            },
+            {
+              "type": {
+                "value": "ActivateBehavior"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "EllipseMovement",
+                "yes"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanObjectVariable"
+              },
+              "parameters": [
+                "Looney",
+                "Move",
+                "True",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "Show"
+              },
+              "parameters": [
+                "FINAL_HEALTH",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "colorB": 228,
+      "colorG": 176,
+      "colorR": 74,
+      "creationTime": 0,
+      "name": "Boss Fight",
+      "source": "",
+      "type": "BuiltinCommonInstructions::Group",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Elipse"
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "BehaviorActivated"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "EllipseMovement"
+              ]
+            },
+            {
+              "type": {
+                "value": "NumberObjectVariable"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Bullet",
+                "!=",
+                "3"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "FireBullet::FireBullet::FireTowardObject"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "FireBullet",
+                "BALLOON_MAN.CenterX()",
+                "BALLOON_MAN.CenterY()",
+                "Needle",
+                "Looney",
+                "300",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "BehaviorActivated"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "EllipseMovement"
+              ]
+            },
+            {
+              "type": {
+                "value": "NumberObjectVariable"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Bullet",
+                "=",
+                "3"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "FireBullet::FireBullet::FireTowardObject"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "FireBullet",
+                "BALLOON_MAN.CenterX()",
+                "BALLOON_MAN.CenterY()",
+                "Wind_Projectile",
+                "Looney",
+                "300",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Wind"
+        },
+        {
+          "type": "BuiltinCommonInstructions::ForEach",
+          "object": "Needle",
+          "conditions": [
+            {
+              "type": {
+                "value": "FireBullet::FireBullet::HasJustFired"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "FireBullet",
+                ""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "Wait"
+              },
+              "parameters": [
+                "6"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberObjectVariable"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Bullet",
+                "=",
+                "RandomInRange(0,3)"
+              ]
+            },
+            {
+              "type": {
+                "value": "Delete"
+              },
+              "parameters": [
+                "Needle",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::ForEach",
+          "object": "Wind_Projectile",
+          "conditions": [
+            {
+              "type": {
+                "value": "CollisionNP"
+              },
+              "parameters": [
+                "Looney",
+                "Wind_Projectile",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BooleanObjectVariable"
+              },
+              "parameters": [
+                "Looney",
+                "Attack",
+                "True",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetBooleanObjectVariable"
+              },
+              "parameters": [
+                "Wind_Projectile",
+                "Launching",
+                "True",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "RotateTowardObject"
+              },
+              "parameters": [
+                "Wind_Projectile",
+                "BALLOON_MAN",
+                "0",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "AddForceTowardObject"
+              },
+              "parameters": [
+                "Wind_Projectile",
+                "BALLOON_MAN",
+                "1250",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySound"
+              },
+              "parameters": [
+                "",
+                "Pop",
+                "",
+                "100",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "CollisionNP"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Wind_Projectile",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BooleanObjectVariable"
+              },
+              "parameters": [
+                "Wind_Projectile",
+                "Launching",
+                "True",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BehaviorActivated"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "EllipseMovement"
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "ChangeLayerTimeScale"
+              },
+              "parameters": [
+                "",
+                "",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "Wait"
+              },
+              "parameters": [
+                ".2"
+              ]
+            },
+            {
+              "type": {
+                "value": "ChangeLayerTimeScale"
+              },
+              "parameters": [
+                "",
+                "",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "ActivateBehavior"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "PlatformerObject",
+                "yes"
+              ]
+            },
+            {
+              "type": {
+                "value": "Flash::Flash::Flash"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Flash",
+                "BALLOON_MAN.Health::DamageCooldownDuration()",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "Delete"
+              },
+              "parameters": [
+                "Wind_Projectile",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "ActivateBehavior"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "EllipseMovement",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "EffectCapability::EffectBehavior::EnableEffect"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Effect",
+                "\"AdvancedBloom\"",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySound"
+              },
+              "parameters": [
+                "",
+                "New sound effect6",
+                "",
+                "100",
+                ".9"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberObjectVariable"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Y_Value",
+                "=",
+                "BALLOON_MAN.Y()"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Hits"
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "PanelSpriteContinuousBar::PanelSpriteContinuousBar::SetValue"
+              },
+              "parameters": [
+                "FINAL_HEALTH",
+                "=",
+                "BALLOON_MAN.Health::Health()",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "CollisionNP"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Looney",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BooleanObjectVariable"
+              },
+              "parameters": [
+                "Looney",
+                "Attack",
+                "True",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "PlatformBehavior::IsOnFloor"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "PlatformerObject"
+              ]
+            },
+            {
+              "type": {
+                "inverted": true,
+                "value": "EffectCapability::EffectBehavior::IsEffectEnabled"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Effect",
+                "\"AdvancedBloom\""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "ChangeLayerTimeScale"
+              },
+              "parameters": [
+                "",
+                "",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "Wait"
+              },
+              "parameters": [
+                ".25"
+              ]
+            },
+            {
+              "type": {
+                "value": "ChangeLayerTimeScale"
+              },
+              "parameters": [
+                "",
+                "",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySound"
+              },
+              "parameters": [
+                "",
+                "New sound effect6",
+                "",
+                "100",
+                ".9"
+              ]
+            },
+            {
+              "type": {
+                "value": "Health::Health::Hit"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Health",
+                "10",
+                "no",
+                "no",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "Delete"
+              },
+              "parameters": [
+                "Wind_Projectile",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "Health::Health::IsDamageCooldownActive"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Health",
+                "="
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberObjectVariable"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Hits",
+                "+",
+                "1"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberObjectVariable"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Hits",
+                "=",
+                "2"
+              ]
+            },
+            {
+              "type": {
+                "inverted": true,
+                "value": "Health::Health::IsDead"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Health",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberObjectVariable"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Hits",
+                "=",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "Tween::TweenBehavior::AddObjectPositionYTween2"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Tween",
+                "\"Float\"",
+                "BALLOON_MAN.Y_Value",
+                "\"easeInOutQuint\"",
+                "1",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "EffectCapability::EffectBehavior::EnableEffect"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Effect",
+                "\"AdvancedBloom\"",
+                "yes"
+              ]
+            },
+            {
+              "type": {
+                "value": "ActivateBehavior"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "PlatformerObject",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Phase 2"
+        },
+        {
+          "type": "BuiltinCommonInstructions::ForEach",
+          "object": "Boss_Grapple_Blaster",
+          "conditions": [
+            {
+              "type": {
+                "value": "Health::Health::Health"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Health",
+                "<=",
+                "100",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "Show"
+              },
+              "parameters": [
+                "Boss_Grapple_Blaster",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::ForEach",
+          "object": "Boss_Grapple_Blaster",
+          "conditions": [
+            {
+              "type": {
+                "value": "Health::Health::Health"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Health",
+                "=",
+                "0",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "Delete"
+              },
+              "parameters": [
+                "Boss_Grapple_Blaster",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "colorB": 228,
+      "colorG": 176,
+      "colorR": 74,
+      "creationTime": 0,
+      "folded": true,
+      "name": "Death",
+      "source": "",
+      "type": "BuiltinCommonInstructions::Group",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "Health::Health::IsDead"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Health",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "AnimatableCapability::AnimatableBehavior::SetName"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Animation",
+                "=",
+                "\"Death\""
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySound"
+              },
+              "parameters": [
+                "",
+                "New sound effect5",
+                "",
+                "100",
+                ".9"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "AnimatableCapability::AnimatableBehavior::Name"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Animation",
+                "=",
+                "\"Death\""
+              ]
+            },
+            {
+              "type": {
+                "value": "AnimatableCapability::AnimatableBehavior::HasAnimationEnded"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                "Animation"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "Delete"
+              },
+              "parameters": [
+                "BALLOON_MAN",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "PlatformBehavior::Gravity"
+              },
+              "parameters": [
+                "Portal",
+                "PlatformerObject",
+                "=",
+                "1000"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": []
+    }
+  ]
+}

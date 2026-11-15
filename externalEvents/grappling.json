@@ -1,0 +1,450 @@
+{
+  "associatedLayout": "Level 1",
+  "name": "Grappling",
+  "events": [
+    {
+      "colorB": 228,
+      "colorG": 176,
+      "colorR": 74,
+      "creationTime": 0,
+      "name": "Grapple",
+      "source": "",
+      "type": "BuiltinCommonInstructions::Group",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "SetX"
+              },
+              "parameters": [
+                "W_Prompt",
+                "=",
+                "Looney.CenterX()"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetY"
+              },
+              "parameters": [
+                "W_Prompt",
+                "=",
+                "Looney.CenterY() -75"
+              ]
+            }
+          ]
+        },
+        {
+          "folded": true,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyFromTextReleased"
+              },
+              "parameters": [
+                "",
+                "\"Space\""
+              ]
+            },
+            {
+              "type": {
+                "value": "PickNearest"
+              },
+              "parameters": [
+                "Looney",
+                "Grapple.X()",
+                "Grapple.Y()",
+                ""
+              ]
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::And"
+                  },
+                  "parameters": [],
+                  "subInstructions": [
+                    {
+                      "type": {
+                        "value": "Distance"
+                      },
+                      "parameters": [
+                        "Looney",
+                        "Grapple",
+                        "500",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "BooleanObjectVariable"
+                      },
+                      "parameters": [
+                        "Looney",
+                        "Grapple",
+                        "True",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "Tween::IsPlaying"
+                      },
+                      "parameters": [
+                        "Looney",
+                        "Tween",
+                        "\"Looney Grapple\""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "PosY"
+                      },
+                      "parameters": [
+                        "Looney",
+                        ">",
+                        "Grapple.Y()"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "Health::Health::IsDead"
+                      },
+                      "parameters": [
+                        "Looney",
+                        "Health",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "AnimatableCapability::AnimatableBehavior::Name"
+                      },
+                      "parameters": [
+                        "Grapple",
+                        "Animation",
+                        "=",
+                        "\"Normal\""
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Tween::TweenBehavior::AddObjectPositionTween2"
+                  },
+                  "parameters": [
+                    "Looney",
+                    "Tween",
+                    "\"Looney Grapple\"",
+                    "Grapple.X()",
+                    "Grapple.Y()",
+                    "\"easeInSine\"",
+                    ".5",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "EffectCapability::EffectBehavior::EnableEffect"
+                  },
+                  "parameters": [
+                    "Looney",
+                    "Effect",
+                    "\"Night\"",
+                    "yes"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "PlaySound"
+                  },
+                  "parameters": [
+                    "",
+                    "BOING",
+                    "",
+                    "100",
+                    ".8"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "CollisionNP"
+              },
+              "parameters": [
+                "Looney",
+                "Grapple",
+                "",
+                "",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "Tween::IsPlaying"
+              },
+              "parameters": [
+                "Looney",
+                "Tween",
+                "\"Looney Grapple\""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "ChangeLayerTimeScale"
+              },
+              "parameters": [
+                "",
+                "",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "Wait"
+              },
+              "parameters": [
+                ".1"
+              ]
+            },
+            {
+              "type": {
+                "value": "ChangeLayerTimeScale"
+              },
+              "parameters": [
+                "",
+                "",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlatformBehavior::Gravity"
+              },
+              "parameters": [
+                "Looney",
+                "PlatformerObject",
+                "=",
+                "500"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanObjectVariable"
+              },
+              "parameters": [
+                "Looney",
+                "Grapple",
+                "False",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "EffectCapability::EffectBehavior::EnableEffect"
+              },
+              "parameters": [
+                "Looney",
+                "Effect",
+                "\"Night\"",
+                "no"
+              ]
+            },
+            {
+              "type": {
+                "value": "Wait"
+              },
+              "parameters": [
+                ".5"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetBooleanObjectVariable"
+              },
+              "parameters": [
+                "Looney",
+                "Grapple",
+                "True",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "PlatformBehavior::Gravity"
+              },
+              "parameters": [
+                "Looney",
+                "PlatformerObject",
+                "=",
+                "550"
+              ]
+            }
+          ]
+        },
+        {
+          "folded": true,
+          "type": "BuiltinCommonInstructions::ForEach",
+          "object": "Grapple",
+          "conditions": [],
+          "actions": [],
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "PickNearest"
+                  },
+                  "parameters": [
+                    "Grapple",
+                    "Looney.X()",
+                    "Grapple.Y()",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::And"
+                  },
+                  "parameters": [],
+                  "subInstructions": [
+                    {
+                      "type": {
+                        "value": "Distance"
+                      },
+                      "parameters": [
+                        "Looney",
+                        "Grapple",
+                        "500",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "PosY"
+                      },
+                      "parameters": [
+                        "Looney",
+                        ">",
+                        "Grapple.Y()"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "EffectCapability::EffectBehavior::EnableEffect"
+                  },
+                  "parameters": [
+                    "Grapple",
+                    "Effect",
+                    "\"AdvancedBloom\"",
+                    "yes"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "PickNearest"
+                  },
+                  "parameters": [
+                    "Grapple",
+                    "Looney.X()",
+                    "Grapple.Y()",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Or"
+                  },
+                  "parameters": [],
+                  "subInstructions": [
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "Distance"
+                      },
+                      "parameters": [
+                        "Looney",
+                        "Grapple",
+                        "500",
+                        ""
+                      ]
+                    },
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "PosY"
+                      },
+                      "parameters": [
+                        "Looney",
+                        ">",
+                        "Grapple.Y()"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "EffectCapability::EffectBehavior::EnableEffect"
+                  },
+                  "parameters": [
+                    "Grapple",
+                    "Effect",
+                    "\"AdvancedBloom\"",
+                    "no"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": []
+    }
+  ]
+}

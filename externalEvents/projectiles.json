@@ -1,0 +1,194 @@
+{
+  "associatedLayout": "Level 2",
+  "name": "Projectiles",
+  "events": [
+    {
+      "colorB": 228,
+      "colorG": 176,
+      "colorR": 74,
+      "creationTime": 0,
+      "name": "Fire The Lazer!",
+      "source": "",
+      "type": "BuiltinCommonInstructions::Group",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "Visible"
+              },
+              "parameters": [
+                "Blaster"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "FireBullet::FireBullet::Fire"
+              },
+              "parameters": [
+                "Blaster",
+                "FireBullet",
+                "Blaster.CenterX()",
+                "Blaster.CenterY()",
+                "Needle",
+                "Blaster.Angle()",
+                "300",
+                "50"
+              ]
+            },
+            {
+              "type": {
+                "value": "Rotate"
+              },
+              "parameters": [
+                "Blaster",
+                "25",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::ForEach",
+          "object": "Needle",
+          "conditions": [
+            {
+              "type": {
+                "value": "FireBullet::FireBullet::HasJustFired"
+              },
+              "parameters": [
+                "Blaster",
+                "FireBullet",
+                ""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "Wait"
+              },
+              "parameters": [
+                "2"
+              ]
+            },
+            {
+              "type": {
+                "value": "Delete"
+              },
+              "parameters": [
+                "Needle",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "type": "BuiltinCommonInstructions::ForEach",
+      "object": "Grapple_Blaster",
+      "conditions": [
+        {
+          "type": {
+            "value": "CollisionNP"
+          },
+          "parameters": [
+            "Looney",
+            "Grapple_Blaster",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "type": {
+            "value": "BuiltinCommonInstructions::Once"
+          },
+          "parameters": []
+        }
+      ],
+      "actions": [
+        {
+          "type": {
+            "value": "ActivateBehavior"
+          },
+          "parameters": [
+            "Grapple_Blaster",
+            "FireBullet",
+            ""
+          ]
+        },
+        {
+          "type": {
+            "value": "PlaySound"
+          },
+          "parameters": [
+            "",
+            "New sound effect6",
+            "",
+            "100",
+            ".8"
+          ]
+        },
+        {
+          "type": {
+            "value": "AnimatableCapability::AnimatableBehavior::SetName"
+          },
+          "parameters": [
+            "Grapple_Blaster",
+            "Animation",
+            "=",
+            "\"Dead\""
+          ]
+        }
+      ]
+    },
+    {
+      "type": "BuiltinCommonInstructions::Standard",
+      "conditions": [
+        {
+          "type": {
+            "value": "AnimatableCapability::AnimatableBehavior::HasAnimationEnded"
+          },
+          "parameters": [
+            "Grapple_Blaster",
+            "Animation"
+          ]
+        },
+        {
+          "type": {
+            "value": "AnimatableCapability::AnimatableBehavior::Name"
+          },
+          "parameters": [
+            "Grapple_Blaster",
+            "Animation",
+            "=",
+            "\"Dead\""
+          ]
+        },
+        {
+          "type": {
+            "value": "BuiltinCommonInstructions::Once"
+          },
+          "parameters": []
+        }
+      ],
+      "actions": [
+        {
+          "type": {
+            "value": "Delete"
+          },
+          "parameters": [
+            "Grapple_Blaster",
+            ""
+          ]
+        }
+      ]
+    }
+  ]
+}
